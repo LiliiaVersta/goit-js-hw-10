@@ -35,9 +35,10 @@ flatpickr(inputDateTime, options);
 
 function calculateTimeLeft() {
   const time = userSelectedDate - new Date();
-  console.log(time);
+  // console.log(time);
   if (time <= 0) {
     clearInterval(intervalId);
+    inputDateTime.disabled = false;
     return;
   }
   const { days, hours, minutes, seconds } = convertMs(time);
@@ -46,6 +47,7 @@ function calculateTimeLeft() {
   elementMinutes.textContent = String(minutes).padStart(2, 0);
   elementSeconds.textContent = String(seconds).padStart(2, 0);
   startBtn.disabled = true;
+  inputDateTime.disabled = true;
 }
 
 function onClickStartTimer() {
